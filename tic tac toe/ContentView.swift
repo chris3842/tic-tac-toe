@@ -19,7 +19,13 @@ struct ContentView: View {
                 ForEach(0..<9) { index in
                     ZStack {
                         Color.blue
+                        Color.white
+                            .opacity(moves[index] == "" ? 1 : 0)
                         Text(moves[index])
+                            .font(.system(size: 90))
+                            .fontWeight(.heavy)
+                    }
+                    .frame(width: 120, height: 120, alignment: .center)
                             .cornerRadius(30)
                             .onTapGesture {
                                 withAnimation(.default) {
@@ -29,18 +35,9 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                        
-                            .font(.system(size: 90))
-                            .fontWeight(.heavy)
-                    }
-                        .frame(width: 120, height: 120, alignment: .center)
-                        .cornerRadius(30)
+                            .rotation3DEffect(.init(degrees: moves[index] != "" ? 180 : 0 ), axis: (x: 0.0, y: 1.0, z: 0.0))
                 }
-                
-                
             }
-                
-            
         }
         .preferredColorScheme(.dark)
         .padding()
